@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chill the Lion — расслабь льва</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="loader" class="loader">
+    <video class="loader-bg-video" autoplay muted loop playsinline>
+      <source src="loader-bg.mp4" type="video/mp4">
+    </video>
+    <div class="loader-content">
+      <p class="loader-text">Ready to chill?</p>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar-track">
+          <div id="loader-bar-fill" class="loader-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top navigation bar -->
+  <nav class="top-nav">
+    <div class="nav-ca">
+      <span class="nav-ca-label">CA:</span>
+      <button type="button" class="nav-ca-address" id="nav-ca-address" title="Click to copy">3nzCn5K9YYe5FaxdEnyPSLjrydCNtWW8He7quNH2pump</button>
+    </div>
+    <a href="https://x.com/i/communities/2021633927618650568/" class="nav-btn nav-twitter" title="Twitter/X" target="_blank" rel="noopener noreferrer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+    </a>
+    <a class="nav-btn nav-buy" href="https://pump.fun/coin/DuWqXCcf7bhdzRwxtrMT6QCcARFLVH5UzNwPoTk5pump" target="_blank" rel="noopener noreferrer">BUY $LION</a>
+  </nav>
+
+  <!-- Main screen: static lion -->
+  <div id="main-screen" class="screen active">
+    <div class="main-hero">
+      <div class="bg-video-wrap">
+        <video class="bg-video" autoplay muted loop playsinline>
+          <source src="bg-video.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div id="world-main"></div>
+      <header class="hero">
+        <img class="hero-logo" src="logo-chill-the-lion.png" alt="Chill the Lion">
+      </header>
+      <div class="hero-tagline">
+        <p>You do not need to think. This Lion is made to relax. First press start chillin, then just hold your cursor and move it around this badass lion. Give some pleasure to yourself and to him. Just chill, bro.</p>
+      </div>
+      <button type="button" id="start-btn" class="start-btn" aria-label="Start chillin">
+        <img src="btn-start-chillin.png" alt="Start Chillin" class="start-btn-img">
+      </button>
+    </div>
+  </div>
+
+  <!-- Interactive screen: lion with fan -->
+  <div id="interactive-screen" class="screen">
+    <div class="bg-video-wrap">
+      <video class="bg-video" autoplay muted loop playsinline>
+        <source src="bg-video.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div id="world"></div>
+    <button id="back-btn" class="back-btn">← back</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.119.0/build/three.min.js"></script>
+  <script src="main.js"></script>
+  <script>
+    (function() {
+      var el = document.getElementById('nav-ca-address');
+      if (el) {
+        el.addEventListener('click', function() {
+          var addr = this.textContent;
+          navigator.clipboard.writeText(addr).then(function() {
+            el.textContent = 'Copied!';
+            el.classList.add('nav-ca-address-copied');
+            setTimeout(function() {
+              el.textContent = addr;
+              el.classList.remove('nav-ca-address-copied');
+            }, 1500);
+          });
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function() {
+      var loader = document.getElementById('loader');
+      var barFill = document.getElementById('loader-bar-fill');
+      var duration = 5500;
+      if (barFill) {
+        barFill.style.transition = 'width ' + (duration / 1000) + 's linear';
+        requestAnimationFrame(function() {
+          barFill.style.width = '100%';
+        });
+      }
+      setTimeout(function() {
+        loader.classList.add('loader--hidden');
+        setTimeout(function() {
+          loader.style.display = 'none';
+          document.getElementById('main-screen').classList.add('active');
+        }, 500);
+      }, duration);
+    })();
+  </script>
+</body>
+</html>

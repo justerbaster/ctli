@@ -1,0 +1,13 @@
+{
+  "name": "chill-the-lion",
+  "version": "1.0.0",
+  "description": "Chill the Lion — relax with the lion",
+  "scripts": {
+    "start": "serve -s . -l $PORT"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
