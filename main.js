@@ -765,11 +765,13 @@ function start() {
         createFan();
         isInteractiveMode = true;
         document.getElementById('interactive-screen').classList.add('active');
+        document.body.classList.add('game-screen-active');
         loop();
       }, 300);
     });
     document.getElementById('back-btn').addEventListener('click', function() {
       document.getElementById('interactive-screen').classList.remove('active');
+      document.body.classList.remove('game-screen-active');
       isBlowing = false;
       setTimeout(function() {
         document.getElementById('main-screen').classList.add('active');
